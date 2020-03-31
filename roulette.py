@@ -1,8 +1,6 @@
 from termcolor import colored, cprint
-
-#  Here comes the code!
-#  May the force be with you, young padawan!
 import os
+
 
 def money_input():
     money = 0
@@ -204,6 +202,15 @@ def bet_on_low_high():
                 print('Wrong input! Choose from the options!')
         except ValueError:
             print('Wrong input! Choose from the options!')
+    
+
+
+def bet_input():  # $$
+    pass
+
+
+def place_bet():
+    pass
 
 
 def roll_number():
@@ -239,6 +246,7 @@ def main():
     # elif bet_type == '2' or bet_type == '1st 12':
     # elif bet_type == '3' or bet_type == '2nd 12':
     # elif bet_type == '4' or bet_type == '3rd 12':
+    
 
 
 if __name__ == "__main__":
