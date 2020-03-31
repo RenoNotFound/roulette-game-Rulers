@@ -21,7 +21,6 @@ def print_board(upper_part, middle_part, lower_part, board_middle, board_lower):
 
 
 def main():
-    # board = init_board()
     dernier = [''] + [str(i) for i in range(1, 37) if i % 3 == 0] + ['D']  
     moyen = ['0'] + [str(i) for i in range(1, 37) if i % 3 == 2] + ['M']
     premier = [''] + [str(i) for i in range(1, 37) if i % 3 == 1] + ['P']
