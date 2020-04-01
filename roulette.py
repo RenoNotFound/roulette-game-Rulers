@@ -9,7 +9,7 @@ def clear_screen():
 
 def money_input():
     money = 0
-    value = input("Mennyi pénzzel szeretnéd kezdeni? \n 1. 1000 \n 2. 5000 \n 3. 10000 \n")
+    value = input("How many euros want to your pocket? \n 1. 1000 € \n 2. 5000 € \n 3. 10000 € \n")
 
     if value == '1':
         money = 1000
@@ -22,7 +22,7 @@ def money_input():
 
 
 def pocket(money):
-    print(money)
+    return money
 
 
 def bet_input(pocket):
@@ -232,9 +232,9 @@ def is_winner():
 
 
 def main():
-    # money = money_input()
-    # print('Money in your pocket: ')
-    # pocket(money)
+    money = money_input()
+    print('Money in your pocket: ')
+    pocketed_money = pocket(money)
     clear_screen()
     number_colors = [   'green', 'red', 'black', 'red', 'black', 'red', 'black',
                         'red', 'black', 'red', 'black', 'black', 'red', 'black',
@@ -244,9 +244,9 @@ def main():
 
     options = ['Numbers', 'Dozens', 'Rows', 'Red or Black', 'Odd or Even', 'Low or High']
 
-    pocket = 50
+    #pocket = 50
     print_board()
-    print(bet_input(pocket))
+    print(bet_input(pocketed_money))
     print(place_bet(100, options, number_colors))
 
 
