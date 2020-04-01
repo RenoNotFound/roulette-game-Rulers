@@ -1,5 +1,10 @@
 from termcolor import colored, cprint
 import os
+from roulette_board import main as print_board
+
+
+def clear_screen():
+    os.system('clear')
 
 
 def money_input():
@@ -12,7 +17,7 @@ def money_input():
         money = 5000
     if value == '3':
         money = 10000
-   
+
     return money
 
 
@@ -25,10 +30,13 @@ def bet_input(pocket):
     available_money = pocket
     betting = True
     while betting:
-        print(available_money)
+        print('—' * (len(str(available_money))+6))
+        cprint('| ' + str(available_money) + ' € |', attrs=['bold'])
+        print('—' * (len(str(available_money))+6))
+
         try:
             if pocket >= minimum:
-                print('Minimum bet is 5€')
+                cprint('\nMinimum bet is 5€', attrs=['bold',])
                 amount = int(input('\nPlace your bets: '))
                 if amount < minimum:
                     print('The minimum is 5€')
@@ -54,25 +62,32 @@ def bet_again(pocket):
 
 
 def place_bet(bet_amount, options, number_colors):
-    cprint('Options: ', attrs=['bold'])
+    cprint('Options:\n', attrs=['bold', 'underline'])
     for i, option in enumerate(options):
         print(f'[{i+1}] {option}')
-    cprint('\nWhat do you want to place your bet on?', attrs=['bold'])
+    cprint('\nChoose your bet:', attrs=['bold'])
     while True:
         try:
             bet_type = input().lower()
             if bet_type == '1' or bet_type == 'numbers':
-                bet_on_numbers(number_colors)
+                clear_screen()
+                number = bet_on_numbers(number_colors)
+                return number
             elif bet_type == '2' or bet_type == 'dozens':
-                bet_on_dozens()
+                dozen = bet_on_dozens()
+                return dozen
             elif bet_type == '3' or bet_type == 'rows':
-                bet_on_rows()
+                row = bet_on_rows()
+                return row
             elif bet_type == '4' or bet_type == 'red or black':
-                bet_on_color()
+                color = bet_on_color()
+                return color
             elif bet_type == '5' or bet_type == 'odd or even':
-                bet_on_odd_even()
+                odd_even = bet_on_odd_even()
+                return odd_even
             elif bet_type == '6' or bet_type == 'low or high':
-                bet_on_low_high()
+                low_high = bet_on_low_high()
+                return low_high
             else:
                 print('Wrong input! Choose from the options!')
         except ValueError:
@@ -100,7 +115,7 @@ def bet_on_dozens():
     cprint('Choose from below: ', attrs=['bold'])
     for i, option in enumerate(options):
         print(f'[{i+1}] {option}')
-    cprint('\nChoose the dozen you want to bet on!', attrs=['bold'])
+    cprint('\nPlace your bet!', attrs=['bold'])
     while True:
         try:
             bet_type = input()
@@ -124,7 +139,7 @@ def bet_on_rows():
     cprint('Choose from below: ', attrs=['bold'])
     for i, option in enumerate(options):
         print(f'[{i+1}] {option}')
-    cprint('\nChoose the row you want to bet on!', attrs=['bold'])
+    cprint('\nPlace your bet!', attrs=['bold'])
     while True:
         try:
             bet_type = input().lower()
@@ -148,14 +163,14 @@ def bet_on_color():
     cprint('Choose from below: ', attrs=['bold'])
     for i, option in enumerate(options):
         print(f'[{i+1}] {option}')
-    cprint('\nChoose the color you want to bet on!', attrs=['bold'])
+    cprint('\nPlace your bet!', attrs=['bold'])
     while True:
         try:
             bet_type = input().lower()
             if bet_type == '1' or bet_type == 'Red':
-                return bet_type
+                return 'Red'
             elif bet_type == '2' or bet_type == 'Black':
-                return bet_type
+                return 'Black'
             else:
                 print('Wrong input! Choose from the options!')
         except ValueError:
@@ -167,14 +182,14 @@ def bet_on_odd_even():
     cprint('Choose from below: ', attrs=['bold'])
     for i, option in enumerate(options):
         print(f'[{i+1}] {option}')
-    cprint('\nChoose which one you want to bet on!', attrs=['bold'])
+    cprint('\nPlace your bet!', attrs=['bold'])
     while True:
         try:
             bet_type = input().lower()
             if bet_type == '1' or bet_type == 'Odd':
-                return bet_type
+                return 'Odd'
             elif bet_type == '2' or bet_type == 'Even':
-                return bet_type
+                return 'Even'
             else:
                 print('Wrong input! Choose from the options!')
         except ValueError:
@@ -194,7 +209,7 @@ def bet_on_low_high():
             bet_type = input().lower()
             if bet_type == '1' or bet_type == 'Low':
                 low_list = [low_nums for low_nums in range(1, low+1)]
-                return low_list
+                return low
             elif bet_type == '2' or bet_type == 'High':
                 high_list = [high_nums for high_nums in range(low, high+1)]
                 return high_list
@@ -202,15 +217,6 @@ def bet_on_low_high():
                 print('Wrong input! Choose from the options!')
         except ValueError:
             print('Wrong input! Choose from the options!')
-    
-
-
-def bet_input():  # $$
-    pass
-
-
-def place_bet():
-    pass
 
 
 def roll_number():
@@ -226,11 +232,10 @@ def is_winner():
 
 
 def main():
-    money = money_input()
-    os.system('clear')
-    print('Money in your pocket: ')
-    pocket(money)
-
+    # money = money_input()
+    # print('Money in your pocket: ')
+    # pocket(money)
+    clear_screen()
     number_colors = [   'green', 'red', 'black', 'red', 'black', 'red', 'black',
                         'red', 'black', 'red', 'black', 'black', 'red', 'black',
                         'red', 'black', 'red', 'black', 'red', 'red', 'black', 'red',
@@ -238,15 +243,11 @@ def main():
                         'red', 'black', 'red', 'black', 'red', 'black', 'red']
 
     options = ['Numbers', 'Dozens', 'Rows', 'Red or Black', 'Odd or Even', 'Low or High']
-    # pocket = 10000
-    # bet_input(pocket)
-    # place_bet(100, options, number_colors)
-    bet_on_low_high()
-    # bet_on_numbers(number_colors)
-    # elif bet_type == '2' or bet_type == '1st 12':
-    # elif bet_type == '3' or bet_type == '2nd 12':
-    # elif bet_type == '4' or bet_type == '3rd 12':
-    
+
+    pocket = 50
+    print_board()
+    print(bet_input(pocket))
+    print(place_bet(100, options, number_colors))
 
 
 if __name__ == "__main__":
