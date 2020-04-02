@@ -1,6 +1,7 @@
 from termcolor import colored, cprint
 import os
 from roulette_board import main as print_board
+import random
 
 
 def clear_screen():
@@ -220,14 +221,15 @@ def bet_on_low_high():
 
 
 def roll_number():
+    rolled_number = random.randint(0, 36)
+    return rolled_number
+
+
+def check_number(rolled_number):
     pass
 
 
-def check_number():
-    pass
-
-
-def is_winner():
+def is_winner(check_number):
     pass
 
 
@@ -248,6 +250,13 @@ def main():
     print_board()
     print(bet_input(pocketed_money))
     print(place_bet(100, options, number_colors))
+    rolled_number = roll_number()
+    print(f"And the rolled number is : {rolled_number}")
+    if is_winner = True:
+        print("You win")
+    if is_winner = False:
+        print("You lost")
+
 
 
 if __name__ == "__main__":
