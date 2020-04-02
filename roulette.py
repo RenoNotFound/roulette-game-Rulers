@@ -3,28 +3,6 @@ import os
 from roulette_board import main as print_board
 
 
-def clear_screen():
-    os.system('clear')
-
-
-def money_input():
-    money = 0
-    value = input("How many euros want to your pocket? \n 1. 1000 € \n 2. 5000 € \n 3. 10000 € \n")
-
-    if value == '1':
-        money = 1000
-    if value == '2':
-        money = 5000
-    if value == '3':
-        money = 10000
-
-    return money
-
-
-def pocket(money):
-    return money
-
-
 def bet_input(pocket):
     minimum = 5
     available_money = pocket
@@ -232,10 +210,7 @@ def is_winner():
 
 
 def main():
-    money = money_input()
-    print('Money in your pocket: ')
-    pocketed_money = pocket(money)
-    clear_screen()
+    
     number_colors = [   'green', 'red', 'black', 'red', 'black', 'red', 'black',
                         'red', 'black', 'red', 'black', 'black', 'red', 'black',
                         'red', 'black', 'red', 'black', 'red', 'red', 'black', 'red',
@@ -243,11 +218,6 @@ def main():
                         'red', 'black', 'red', 'black', 'red', 'black', 'red']
 
     options = ['Numbers', 'Dozens', 'Rows', 'Red or Black', 'Odd or Even', 'Low or High']
-
-    #pocket = 50
-    print_board()
-    print(bet_input(pocketed_money))
-    print(place_bet(100, options, number_colors))
 
 
 if __name__ == "__main__":
